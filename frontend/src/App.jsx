@@ -25,7 +25,7 @@ const App = () => {
     return <PageLoader />;
   }
   return (
-    <div className="h-screen" data-theme={theme}>
+    <div className="min-h-screen" data-theme={theme}>
       <Routes>
         <Route
           path="/"
