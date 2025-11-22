@@ -17,7 +17,7 @@ const App = () => {
   // tanstack query crsh course
 
   const { isLoading, authUser } = useAuthUser();
-  const { theme } = useThemeStore()
+  const { theme } = useThemeStore();
   const isAuthenticated = Boolean(authUser);
   const isOnboarded = authUser?.isOnboarded;
 
@@ -34,7 +34,6 @@ const App = () => {
               <Layout showSidebar={true}>
                 <HomePage />
               </Layout>
-             
             ) : (
               <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
             )
@@ -63,26 +62,36 @@ const App = () => {
         <Route
           path="/notifications"
           element={
-           isAuthenticated && isOnboarded ? (
-            <Layout showSidebar={true}>
-              <NotificationsPage />
-            </Layout>
-           ) : (<Navigate to={!isAuthenticated ? "/login" : "/onboarding"}/>)
+            isAuthenticated && isOnboarded ? (
+              <Layout showSidebar={true}>
+                <NotificationsPage />
+              </Layout>
+            ) : (
+              <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+            )
           }
         />
         <Route
-          path="/call"
-          element={isAuthenticated ? <CallPage /> : <Navigate to="/login" />}
+          path="/call/:id"
+          element={
+            isAuthenticated && isOnboarded ? (
+              <CallPage />
+            ) : (
+              <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+            )
+          }
         />
         <Route
           path="/chat/:id"
-          element={isAuthenticated && isOnboarded ? (
-            <Layout showSidebar={false}>
-              <ChatPage />
-            </Layout>
-          ) : (
-            <Navigate to={!isAuthenticated ? "/login" : "/onboarding"}/>
-          )}
+          element={
+            isAuthenticated && isOnboarded ? (
+              <Layout showSidebar={false}>
+                <ChatPage />
+              </Layout>
+            ) : (
+              <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+            )
+          }
         />
         <Route
           path="/onboarding"
