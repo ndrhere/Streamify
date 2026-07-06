@@ -25,7 +25,7 @@ const LoginPage = () => {
   
   
   //This is how we did it using our custom hook - optimized version
- const { isLoading, error, loginMutation } = useLogin();
+ const { isPending, isLoading, error, loginMutation } = useLogin();
 
    if (isLoading) {
     return (
