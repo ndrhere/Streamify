@@ -25,8 +25,20 @@ const LoginPage = () => {
   
   
   //This is how we did it using our custom hook - optimized version
- const { isPending, error, loginMutation } = useLogin();
+ const { isLoading, error, loginMutation } = useLogin();
 
+   if (isLoading) {
+    return (
+      <div
+        data-testid="streamify-loading"
+        className="min-h-screen flex items-center justify-center bg-[#0a0a0a]"
+      >
+        <span className="font-mono text-xs tracking-[0.3em] text-white/60 uppercase">
+          Loading_System…
+        </span>
+      </div>
+    );
+  }
   const handleLogin = (e) => {
     e.preventDefault();
     loginMutation(loginData);
