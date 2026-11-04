@@ -25,9 +25,9 @@ const LoginPage = () => {
   
   
   //This is how we did it using our custom hook - optimized version
- const { isPending, isLoading, error, loginMutation } = useLogin();
+ const { isLoading, error, loginMutation } = useLogin();
 
-   if (isLoading) {
+ if (isLoading) {
     return (
       <div
         data-testid="streamify-loading"
@@ -39,6 +39,7 @@ const LoginPage = () => {
       </div>
     );
   }
+
   const handleLogin = (e) => {
     e.preventDefault();
     loginMutation(loginData);
